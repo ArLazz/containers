@@ -6,32 +6,33 @@ import (
 
 func main() {
 
-	var n int
-	fmt.Scan(&n)
-	balls := make([][]int, n)
-	for i := range balls {
-		line := make([]int, n)
+	var SizeOfMatrix int
+	fmt.Scan(&SizeOfMatrix)
+	ballsInContainers := make([][]int, SizeOfMatrix)
+	for row := range ballsInContainers {
+		line := make([]int, SizeOfMatrix)
 		for j := range line {
 			fmt.Scan(&line[j])
 		}
-		balls[i] = line
+		ballsInContainers[row] = line
 	}
 
-	checkContainers(balls, n)
+	checkContainers(ballsInContainers, SizeOfMatrix)
 }
 
-func checkContainers(balls [][]int, n int) {
-	for i := 0; i < n; i++ {
+func checkContainers(ballsInContainers [][]int, SizeOfMatrix int) {
+	for i := 0; i < SizeOfMatrix; i++ {
 		rowSum := 0
 		columnSum := 0
-		for j := 0; j < n; j++ {
-			rowSum += balls[i][j] 
-			columnSum += balls[j][i]
+		for j := 0; j < SizeOfMatrix; j++ {
+			rowSum += ballsInContainers[i][j] 
+			columnSum += ballsInContainers[j][i]
 		}
 		if rowSum != columnSum {
 			fmt.Println("no")
 			return
 		}
 	}	
+	
 	fmt.Println("yes")
 }
